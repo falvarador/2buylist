@@ -1,0 +1,49 @@
+---
+import Modal from "./Modal.astro";
+---
+
+<aside
+	class="w-80 bg-white dark:bg-darkSidebar border-r border-slate-200 dark:border-slate-800 flex flex-col hidden lg:flex">
+	<div class="p-6 flex justify-between items-center">
+		<h1 class="text-2xl font-bold tracking-tight">My Lists</h1>
+		<button @click="darkMode = !darkMode" class="text-slate-400 hover:text-brand transition-colors">
+			<i :class="darkMode ? 'fa-sun' : 'fa-moon'" class="fas text-lg"></i>
+		</button>
+	</div>
+
+	<nav id="sidebar-lists" class="flex-1 overflow-y-auto px-4 space-y-1 py-2">
+		<template x-for="(list, index) in lists" :key="list.id">
+			<div @click="currentListIndex = index"
+				 :data-id="list.id"
+				 :class="currentListIndex === index ? 'bg-emerald-50 dark:bg-brand/10 border-l-4 border-brand' : 'border-l-4 border-transparent hover:bg-slate-50 dark:hover:bg-slate-800'"
+				 class="group flex items-center p-3 rounded-r-xl cursor-pointer transition-all relative">
+
+				<div
+					class="absolute left-0 opacity-0 group-hover:opacity-100 cursor-grab active:cursor-grabbing px-1 text-slate-300">
+					<i class="fas fa-grip-vertical text-xs"></i>
+				</div>
+
+				<div
+					:class="currentListIndex === index ? 'bg-white dark:bg-brand text-brand dark:text-white' : 'bg-slate-100 dark:bg-slate-800 text-slate-500'"
+					class="w-10 h-10 rounded-xl flex items-center justify-center mr-4 shadow-sm transition-colors ml-2">
+					<i :class="list.icon" class="fas text-sm"></i>
+				</div>
+				<div class="flex-1">
+					<p class="font-semibold text-sm"
+					   :class="currentListIndex === index ? 'text-emerald-700 dark:text-emerald-400' : 'text-slate-700 dark:text-slate-300'"
+					   x-text="list.name"></p>
+					<p class="text-[11px] text-slate-400 font-medium" x-text="`${list.items.length} items`"></p>
+				</div>
+			</div>
+		</template>
+	</nav>
+
+	<div class="p-6">
+		<button @click="showModal = true"
+				class="w-full bg-brand hover:bg-emerald-600 text-white font-bold py-4 rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/20 transition-all active:scale-95">
+			<i class="fas fa-plus text-xs"></i> New List
+		</button>
+	</div>
+</aside>
+
+<Modal />
