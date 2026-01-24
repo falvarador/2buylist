@@ -1,17 +1,10 @@
 @import "tailwindcss";
-@custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-    /* font family */
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-
-    /* custom colors */
+    --font-sans: 'Inter', sans-serif;
     --color-brand: #22c55e;
     --color-darkBg: #111827;
     --color-darkSidebar: #1f2937;
-
-    /* fonts */
-    --font-display: "Inter", sans-serif;
 }
 
 [x-cloak] {

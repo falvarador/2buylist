@@ -1,5 +1,5 @@
 {
-  "name": "galactic-group",
+  "name": "2buylist",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
@@ -15,6 +15,7 @@
     "@types/alpinejs": "^3.13.11",
     "alpinejs": "^3.15.4",
     "astro": "^5.16.10",
+    "pocketbase": "^0.26.6",
     "tailwindcss": "^4.1.18"
   },
   "devDependencies": {

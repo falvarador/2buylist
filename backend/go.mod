@@ -1,4 +1,4 @@
-module go-cards
+module 2buylist
 
 go 1.25.6
 
