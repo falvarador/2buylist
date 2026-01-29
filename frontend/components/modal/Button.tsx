@@ -1,0 +1,14 @@
+import {showModal} from "@/islands/state.ts";
+
+export function Button() {
+  return (
+    <div class="p-6">
+      <button
+        onClick={() => showModal.value = true}
+        class="w-full bg-brand hover:bg-emerald-600 text-white font-bold py-4 rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/20 transition-all active:scale-95"
+      >
+        <i class="fas fa-plus text-xs"></i> New List
+      </button>
+    </div>
+  );
+}
