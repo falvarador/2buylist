@@ -1,0 +1,100 @@
+---
+
+---
+
+<main class="flex-1 overflow-y-auto bg-base-200">
+    <div class="max-w-4xl mx-auto w-full px-10">
+        <div class="py-8 flex items-center justify-between">
+            <div
+                class="text-xs font-bold opacity-40 uppercase tracking-widest flex items-center gap-2"
+            >
+                <i class="fas fa-home"></i>
+                <span>/</span>
+                <span
+                    class="text-base-content opacity-100"
+                    x-text="lists[currentListIndex].name"></span>
+            </div>
+            <!-- <div class="avatar-group -space-x-4 rtl:space-x-reverse">
+                <div class="avatar border-none w-8">
+                    <img src="https://i.pravatar.cc/100?u=1" />
+                </div>
+                <div class="avatar border-none w-8">
+                    <img src="https://i.pravatar.cc/100?u=2" />
+                </div>
+                <div class="avatar border-none placeholder w-8">
+                    <div class="bg-neutral text-neutral-content text-xs">
+                        <span>+2</span>
+                    </div>
+                </div>
+            </div> -->
+
+            <div class="avatar avatar-online w-8">
+                <div class="w-24 rounded-full">
+                    <img src="https://i.pravatar.cc/100?u=1" />
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-10">
+            <h2
+                class="text-4xl font-semibold mb-2 tracking-tight"
+                x-text="lists[currentListIndex].name"
+            >
+            </h2>
+            <div
+                class="text-primary font-bold"
+                x-text="`${pendingCount()} items pending`"
+            >
+            </div>
+        </div>
+
+        <div
+            class="card bg-base-100 shadow-xl border border-slate-200 dark:border-slate-800 overflow-hidden mb-20"
+        >
+            <div class="p-4 bg-base-300/30 flex items-center gap-4">
+                <div class="btn btn-circle btn-sm btn-ghost no-animation">
+                    <i class="fas fa-plus opacity-50"></i>
+                </div>
+                <input
+                    type="text"
+                    x-model="newItem"
+                    @keyup.enter="addItem()"
+                    class="input input-ghost w-full focus:bg-transparent font-medium"
+                    placeholder="What do you need to buy?"
+                />
+                <kbd class="kbd kbd-sm hidden sm:inline-flex">↵ Enter</kbd>
+            </div>
+
+            <div class="card-body p-0">
+                <div class="divide-y divide-base-200">
+                    <template
+                        x-for="(item, index) in lists[currentListIndex].items"
+                        :key="item.id"
+                    >
+                        <div
+                            class="flex items-center p-6 hover:bg-base-200/50 transition-colors group"
+                        >
+                            <input
+                                type="checkbox"
+                                x-model="item.completed"
+                                class="checkbox checkbox-primary checkbox-md rounded-lg"
+                            />
+
+                            <span
+                                class="flex-1 ml-6 font-semibold text-lg"
+                                :class="item.completed ? 'line-through opacity-30 italic' : ''"
+                                x-text="item.text"></span>
+
+                            <button
+                                @click="removeItem(index)"
+                                class="btn btn-ghost btn-circle btn-sm text-error opacity-0 group-hover:opacity-100 transition-opacity"
+                            >
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                        </div>
+                    </template>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
