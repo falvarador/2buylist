@@ -3,126 +3,20 @@ import "@/styles/global.css";
 ---
 
 <!doctype html>
-<html lang="en" x-data="app()" :class="{ 'dark': darkMode }" x-init="init()">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<link
+<html lang="en">
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width"/>
+	<link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+	<meta name="generator" content={Astro.generator}/>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+	<link
 			rel="stylesheet"
 			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-		/>
-		<title>Astro Basics</title>
-	</head>
-	<body
-		class="bg-base-200 text-base-content antialiased font-sans min-h-screen"
-	>
-		<slot />
-	</body>
+	/>
+	<title>2BuyList</title>
+</head>
+<body>
+<slot/>
+</body>
 </html>
-
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
-
-<script is:inline>
-	function app() {
-		return {
-			darkMode: window.matchMedia("(prefers-color-scheme: dark)").matches,
-			sidebarOpen: false,
-			showModal: false,
-			currentListIndex: 0,
-			newItem: "",
-			newList: { name: "", icon: "fa-shopping-cart" },
-			availableIcons: [
-				"fa-shopping-cart",
-				"fa-fire",
-				"fa-shopping-bag",
-				"fa-tools",
-				"fa-birthday-cake",
-				"fa-utensils",
-				"fa-leaf",
-				"fa-laptop",
-			],
-
-			lists: [
-				{
-					id: "1",
-					name: "Weekly Groceries",
-					icon: "fa-shopping-cart",
-					items: [
-						{ id: 101, text: "Organic Milk", completed: false },
-						{
-							id: 102,
-							text: "Coffee Beans",
-							completed: true,
-						},
-					],
-				},
-				{ id: "2", name: "Weekend BBQ", icon: "fa-fire", items: [] },
-				{
-					id: "3",
-					name: "Target Run",
-					icon: "fa-shopping-bag",
-					items: [],
-				},
-			],
-
-			init() {
-				// Inicializar Drag & Drop
-				const el = document.getElementById("sidebar-lists");
-				Sortable.create(el, {
-					animation: 150,
-					ghostClass: "sortable-ghost",
-					handle: ".group", // Se puede arrastrar desde cualquier parte del item
-					onEnd: (evt) => {
-						// Reordenar el array en Alpine
-						const movedItem = this.lists.splice(evt.oldIndex, 1)[0];
-						this.lists.splice(evt.newIndex, 0, movedItem);
-						// Ajustar el índice actual para que no se pierda la selección
-						this.currentListIndex = evt.newIndex;
-					},
-				});
-			},
-
-			addItem() {
-				if (!this.newItem.trim()) return;
-				this.lists[this.currentListIndex].items.unshift({
-					id: Date.now(),
-					text: this.newItem,
-					completed: false,
-				});
-				this.newItem = "";
-			},
-
-			removeItem(index) {
-				this.lists[this.currentListIndex].items.splice(index, 1);
-			},
-
-			createList() {
-				if (!this.newList.name.trim()) return;
-				this.lists.push({
-					id: Date.now().toString(),
-					name: this.newList.name,
-					icon: this.newList.icon,
-					items: [],
-				});
-				this.currentListIndex = this.lists.length - 1;
-				this.newList = { name: "", icon: "fa-shopping-cart" };
-				this.showModal = false;
-			},
-
-			pendingCount() {
-				return this.lists[this.currentListIndex].items.filter(
-					(i) => !i.completed,
-				).length;
-			},
-		};
-	}
-</script>

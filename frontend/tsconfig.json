@@ -18,6 +18,7 @@
       "@layouts/*": [
         "./src/layouts/*"
       ]
-    }
+    },
+    "jsx": "preserve"
   }
 }

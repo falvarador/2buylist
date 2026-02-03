@@ -9,16 +9,9 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@alpinejs/collapse": "^3.15.4",
-    "@astrojs/alpinejs": "^0.4.9",
-    "@tailwindcss/vite": "^4.1.18",
-    "@types/alpinejs": "^3.13.11",
-    "alpinejs": "^3.15.4",
+    "@astrojs/vue": "^5.1.4",
     "astro": "^5.16.10",
     "pocketbase": "^0.26.6",
-    "tailwindcss": "^4.1.18"
-  },
-  "devDependencies": {
-    "@types/alpinejs__collapse": "^3.13.4"
+    "vue": "^3.5.27"
   }
 }

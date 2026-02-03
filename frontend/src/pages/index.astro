@@ -1,12 +1,12 @@
 ---
-import Sidebar from "@components/sidebar/Sidebar.astro";
+import Sidebar from "@components/sidebar/Sidebar.vue";
 import Layout from "@layouts/Layout.astro";
 import Main from "@components/Main.astro";
 ---
 
 <Layout>
-	<div class="flex h-screen overflow-hidden">
-		<Sidebar />
-		<Main />
+	<div class="app-container">
+		<Sidebar client:only/>
+		<Main/>
 	</div>
 </Layout>

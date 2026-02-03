@@ -1,0 +1,36 @@
+/* Sidebar Component */
+.sidebar {
+    width: 320px;
+    background: var(--bg-sidebar);
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.5rem;
+        font-size: 1.125rem;
+        line-height: 1.75rem;
+        font-weight: 700;
+        letter-spacing: -0.025em;
+        transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        transition-duration: 150ms;
+    }
+
+    .btn-icon {
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0.5rem;
+        font-size: large;
+        border-radius: var(--radius);
+        transition: var(--transition);
+
+        &:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+    }
+}
